@@ -13,6 +13,6 @@ class Category extends Model
         return $this->hasMany('App\Models\Product');
     }
     public function getNameAttribute($value) {
-        return ucfirst($value);
+        return ucwords($value);
     }
 }

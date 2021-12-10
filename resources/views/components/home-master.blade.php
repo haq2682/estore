@@ -50,6 +50,12 @@
             </div>
             <div class="navigation__column center">
                 <ul class="main-menu menu">
+                    <li class="menu-item">
+                        <form action="{{route('addcategory')}}" method="post">
+                            @csrf
+                            <button type="submit">ADD</button>
+                        </form>
+                    </li>
                     <li class="menu-item"><a href="{{route('index')}}">Home</a>
                     </li>
                     @php

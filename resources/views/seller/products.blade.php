@@ -12,7 +12,7 @@
 
                     <div class="row g-3 mb-4 align-items-center justify-content-between">
                         <div class="col-auto">
-                            <h1 class="app-page-title mb-0">Orders</h1>
+                            <h1 class="app-page-title mb-0">Products</h1>
                         </div>
                         <div class="col-auto">
                             <div class="page-utilities">
@@ -54,6 +54,7 @@
                                                 <th class="cell">Category</th>
                                                 <th class="cell"></th>
                                                 <th class="cell"></th>
+                                                <th class="cell"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -77,6 +78,11 @@
                                                         <button type="submit" style="background: none; border: none;"><a class="btn-sm app-btn-secondary">Delete</a></button>
                                                     </form>
                                                 </td>
+                                                <td>
+                                                    <a class="btn-sm app-btn-secondary" href="{{route('seller.edit_product', $product->id)}}">
+                                                        Edit
+                                                    </a>
+                                                </td>
                                             </tr>
                                                 @endforeach
 
@@ -87,23 +93,6 @@
                             @else
                                 <h4 style="text-align: center;">You haven't posted any product yet.</h4>
                             @endif
-                                <div class="ps-pagination">
-                                    @if ($products->lastPage() > 1)
-                                        <ul class="pagination">
-                                            @if ($products->currentPage() > 4 && $page === 2)
-                                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                                            @endif
-                                            <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
-                                            @for ($i = 1; $i <= $products->lastPage(); $i++)
-                                                <li class="{{($products->currentPage()==$i) ? 'active' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($i))['query']}}">{{$i}}</a></li>
-                                            @endfor
-                                            <li class="{{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($products->currentPage()+1))['query'] }}" @if($products->currentPage() == $products->lastPage()) disabled @endif><i class="fa fa-angle-right"></i></a></li>
-                                            @if ($products->currentPage() < $products->lastPage() - 3)
-                                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                                            @endif
-                                        </ul>
-                                    @endif
-                                </div>
                         </div><!--//tab-pane-->
                     </div><!--//tab-content-->
 

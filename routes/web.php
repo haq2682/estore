@@ -29,6 +29,7 @@ Route::get('/returns', 'Controller@returns')->name('returns');
 Route::get('/faq', 'Controller@faq')->name('faq');
 Route::get('/policies', 'Controller@policies')->name('policies');
 Route::get('/contact', 'Controller@contact')->name('contact');
+Route::post('/category', 'CategoryController@add')->name('addcategory');
 
 Auth::routes();
 
@@ -65,4 +66,6 @@ Route::middleware('seller')->group(function() {
     Route::get('/seller/products/create', 'SellerController@create')->name('seller.create_product');
     Route::post('/seller/products/add', 'ProductController@add')->name('seller.add');
     Route::delete('/seller/products/delete/{id}', 'ProductController@delete')->name('seller.delete');
+    Route::get('/seller/products/edit/{id}', 'ProductController@edit')->name('seller.edit_product');
+    Route::put('/seller/products/update/{id}', 'ProductController@update')->name('seller.update');
 });

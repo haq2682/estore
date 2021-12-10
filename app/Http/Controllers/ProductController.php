@@ -113,4 +113,58 @@ class ProductController extends Controller
         session()->flash('message', 'Product deleted successfully!');
         return back();
     }
+    public function edit($id) {
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('seller.edit_product', compact('product', 'categories'));    
+    }
+    public function update($id) {
+        $inputs = request()->validate([
+            'category_id' => 'required',
+            'name' => 'required|regex:/^[\w\-\s]+$/',
+            'description' => 'required|min:300',
+            'product_image1' => 'required|mimes:jpg,png,bmp',
+            'product_image2' => 'required|mimes:jpg,png,bmp',
+            'product_image3' => 'required|mimes:jpg,png,bmp',
+            'product_image4' => 'required|mimes:jpg,png,bmp',
+            'product_image5' => 'required|mimes:jpg,png,bmp',
+            'overview' => 'required|min:100|max:255',
+            'count' => 'required',
+            'new_price' => 'required',
+            'old_price' => 'nullable',
+        ]);
+        if(!request('old_price')) {
+            $inputs['old_price'] = 0;
+        }
+        $path = public_path()."\images\products\\".auth()->user()->name;
+        if(!$path) {
+            File::makeDirectory($path, $mode = 0777, true, true);
+        }
+        if(request('product_image1')) {
+            $inputs['product_image1'] = request('product_image1')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image2'] = request('product_image2')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image3'] = request('product_image3')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image4'] = request('product_image4')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image5'] = request('product_image5')->store('images/products/'. auth()->user()->name, 'public');
+        }
+        Product::update([
+            'user_id' => auth()->user()->id,
+            'category_id' => $inputs['category_id'],
+            'name' => $inputs['name'],
+            'stock_status' => 'instock',
+            'description' => $inputs['description'],
+            'product_image1' => $inputs['product_image1'],
+            'product_image2' => $inputs['product_image2'],
+            'product_image3' => $inputs['product_image3'],
+            'product_image4' => $inputs['product_image4'],
+            'product_image5' => $inputs['product_image5'],
+            'overview' => $inputs['overview'],
+            'count' => $inputs['count'],
+            'old_price' => $inputs['old_price'],
+            'new_price' => $inputs['new_price'],
+            'sold' => 0,
+        ]);
+        session()->flash('message', 'Product updated successfully!');
+        return back();
+    }
 }
