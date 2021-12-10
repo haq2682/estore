@@ -13,11 +13,11 @@
                                             @if($product->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
                                             <a style="display: none;" class="ps-shoe__favorite" href="#">
                                             </a>
-                                            <img src="{{$product->product_image1}}" alt="">
+                                            <img src="/{{$product->product_image1}}" alt="">
                                         </div>
                                         <div class="ps-shoe__content">
                                             <div class="ps-shoe__variants">
-                                                <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"> </div>
+                                                <div class="ps-shoe__variant normal"><img src="/{{$product->product_image2}}" alt=""><img src="/{{$product->product_image3}}" alt=""><img src="/{{$product->product_image4}}"><img src="/{{$product->product_image5}}"> </div>
                                                 <div>Seller: {{$product->user->name}}</div>
                                             </div>
                                             <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>
@@ -37,11 +37,11 @@
                                 @if ($products->currentPage() > 4 && $page === 2)
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                 @endif
-                                <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
+                                <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{request()->getQueryString().$category->id."?".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
                                 @for ($i = 1; $i <= $products->lastPage(); $i++)
-                                    <li class="{{($products->currentPage()==$i) ? 'active' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($i))['query']}}">{{$i}}</a></li>
+                                    <li class="{{($products->currentPage()==$i) ? 'active' : ''}}"><a href="{{$category->id.request()->getQueryString()."?".parse_url($products->url($i))['query']}}">{{$i}}</a></li>
                                 @endfor
-                                <li class="{{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($products->currentPage()+1))['query'] }}" @if($products->currentPage() == $products->lastPage()) disabled @endif><i class="fa fa-angle-right"></i></a></li>
+                                <li class="{{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}"><a href="{{$category->id.request()->getQueryString()."?".parse_url($products->url($products->currentPage()+1))['query'] }}" @if($products->currentPage() == $products->lastPage()) disabled @endif><i class="fa fa-angle-right"></i></a></li>
                                 @if ($products->currentPage() < $products->lastPage() - 3)
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                 @endif
@@ -57,9 +57,9 @@
                     </div>
                     <div class="ps-product__filter">
                         <ul>
-                            <li><a href="{{"show?".request()->getQueryString()."&" . "sort=name"}}">Name</a></li>
-                            <li><a href="{{"show?".request()->getQueryString()."&" . "sort=price_low"}}">Price (Low to High)</a></li>
-                            <li><a href="{{"show?".request()->getQueryString()."&" . "sort=price_high"}}">Price (High to Low)</a></li>
+                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=name"}}">Name</a></li>
+                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=price_low"}}">Price (Low to High)</a></li>
+                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=price_high"}}">Price (High to Low)</a></li>
                         </ul>
                     </div>
                 </aside>

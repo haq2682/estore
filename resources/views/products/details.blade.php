@@ -13,21 +13,24 @@
                         <div class="ps-product__thumbnail">
                             <div class="ps-product__preview">
                                 <div class="ps-product__variants">
-                                    <div class="item"><img src="{{$details->product_image1}}" alt=""></div>
-                                    <div class="item"><img src="{{$details->product_image2}}" alt=""></div>
-                                    <div class="item"><img src="{{$details->product_image3}}" alt=""></div>
-                                    <div class="item"><img src="{{$details->product_image4}}" alt=""></div>
+                                    <div class="item"><img src="/{{$details->product_image1}}" alt=""></div>
+                                    <div class="item"><img src="/{{$details->product_image2}}" alt=""></div>
+                                    <div class="item"><img src="/{{$details->product_image3}}" alt=""></div>
+                                    <div class="item"><img src="/{{$details->product_image4}}" alt=""></div>
+                                    <div class="item"><img src="/{{$details->product_image5}}" alt=""></div>
                                 </div><img src="{{$details->product_image1}}" alt="">
                             </div>
                             <div class="ps-product__image">
-                                <div class="item"><img class="zoom" src="{{$details->product_image1}}" alt="" data-zoom-image="{{$details->product_image1}}"></div>
-                                <div class="item"><img class="zoom" src="{{$details->product_image2}}" alt="" data-zoom-image="{{$details->product_image2}}"></div>
-                                <div class="item"><img class="zoom" src="{{$details->product_image3}}" alt="" data-zoom-image="{{$details->product_image3}}"></div>
+                                <div class="item"><img class="zoom" src="/{{$details->product_image1}}" alt="" data-zoom-image="/{{$details->product_image1}}"></div>
+                                <div class="item"><img class="zoom" src="/{{$details->product_image2}}" alt="" data-zoom-image="/{{$details->product_image2}}"></div>
+                                <div class="item"><img class="zoom" src="/{{$details->product_image3}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
+                                <div class="item"><img class="zoom" src="/{{$details->product_image4}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
+                                <div class="item"><img class="zoom" src="/{{$details->product_image5}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
                             </div>
                         </div>
                         <div class="ps-product__thumbnail--mobile">
-                            <div class="ps-product__main-img"><img src="{{$details->product_image}}" alt=""></div>
-                            <div class="ps-product__preview owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="20" data-owl-nav="true" data-owl-dots="false" data-owl-item="3" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="3" data-owl-duration="1000" data-owl-mousedrag="on"><img src="{{$details->product_image}}" alt=""><img src="{{$details->product_image}}}" alt=""><img src="{{$details->product_image}}" alt=""></div>
+                            <div class="ps-product__main-img"><img src="/{{$details->product_image1}}" alt=""></div>
+                            <div class="ps-product__preview owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="20" data-owl-nav="true" data-owl-dots="false" data-owl-item="3" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="3" data-owl-duration="1000" data-owl-mousedrag="on"><img src="/{{$details->product_image2}}" alt=""><img src="/{{$details->product_imag3}}}" alt=""><img src="/{{$details->product_imag4}}" alt=""><img src="/{{$details->product_imag5}}" alt=""></div>
                         </div>
                         <div class="ps-product__info">
                             <h1>{{$details->name}}</h1>
@@ -57,7 +60,7 @@
                                         @csrf
                                         <div class="ps-product__actions">
                                             <input type="hidden" name="details" value="{{$details->id}}">
-                                            <button type="submit" style="border: none; background: none;"><a><i class="ps-icon-heart"></i></a></button>
+                                            <button type="submit" class="ps-btn">Add to Wishlist <i class="ps-icon-heart"></i></button>
                                         </div>
                                     </form>
                                     @else
@@ -66,7 +69,7 @@
                                             @csrf
                                             <div class="ps-product__actions">
                                                 <input type="hidden" name="details" value="{{$details->id}}">
-                                                <button type="submit" style="border: none; background: none;"><a><i class="fa fa-ban"></i></a></button>
+                                                <button type="submit" class="ps-btn">Remove from Wishlist<i class="fa fa-ban"></i></button>
                                             </div>
                                         </form>
                                         @endif
@@ -86,8 +89,7 @@
                         </div>
                         <div class="tab-content mb-60">
                             <div class="tab-pane active" role="tabpanel" id="tab_01">
-                                <p>Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.</p>
-                                <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
+                                <p>{{$details->overview}}</p>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab_02">
                                 @foreach($comments as $comment)
@@ -154,25 +156,29 @@
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                        @if($recommendations !== null)
                         @foreach($recommendations as $recommended)
-                        <div class="ps-shoes--carousel">
-                            <div class="ps-shoe">
-                                <div class="ps-shoe__thumbnail">
-                                        @if($recommended->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
-                                        <img src="{{$recommended->product_image1}}" alt=""><a class="ps-shoe__overlay" href="{{route('products.details', $recommended->id)}}"></a>
-                                </div>
-                                <div class="ps-shoe__content">
-                                    <div class="ps-shoe__variants">
-                                        <div class="ps-shoe__variant normal"><img src="{{$recommended->product_image2}}" alt=""><img src="{{$recommended->product_image3}}" alt=""><img src="{{$recommended->product_image4}}"> </div>
-                                        <div>Seller: {{$recommended->user->name}}</div>
+                            <div class="ps-shoes--carousel">
+                                <div class="ps-shoe">
+                                    <div class="ps-shoe__thumbnail">
+                                            @if($recommended->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
+                                            <img src="/{{$recommended->product_image1}}" alt=""><a class="ps-shoe__overlay" href="{{route('products.details', $recommended->id)}}"></a>
                                     </div>
-                                    <div class="ps-shoe__detail"><a class="ps-shoe__name" href="{{route('products.details', $recommended->id)}}">{{$recommended->name}}</a>
-                                        <p class="ps-shoe__categories"><a href="#">{{$recommended->category->name}}</a><span class="ps-shoe__price" style="color: limegreen;"> @if($recommended->old_price)<del style="color: red;">$ {{$recommended->old_price}}</del> @endif $ {{$recommended->new_price}}</span>
+                                    <div class="ps-shoe__content">
+                                        <div class="ps-shoe__variants">
+                                            <div class="ps-shoe__variant normal"><img src="/{{$recommended->product_image2}}" alt=""><img src="/{{$recommended->product_image3}}" alt=""><img src="/{{$recommended->product_image4}}"><img src="/{{$recommended->product_image5}}" alt=""> </div>
+                                            <div>Seller: {{$recommended->user->name}}</div>
+                                        </div>
+                                        <div class="ps-shoe__detail"><a class="ps-shoe__name" href="{{route('products.details', $recommended->id)}}">{{$recommended->name}}</a>
+                                            <p class="ps-shoe__categories"><a href="#">{{$recommended->category->name}}</a><span class="ps-shoe__price" style="color: limegreen;"> @if($recommended->old_price)<del style="color: red;">$ {{$recommended->old_price}}</del> @endif $ {{$recommended->new_price}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                             @endforeach
+                            @else
+                                <div style="text-align: center;"><h3>There are currently no products.</h3></div>
+                            @endif
                     </div>
                 </div>
             </div>

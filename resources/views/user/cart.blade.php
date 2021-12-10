@@ -18,7 +18,7 @@
                             <tbody>
                                 @foreach($carts as $cart)
                             <tr id='price'>
-                                <td><img style= "height: 100px; width: 100px; object-fit: cover;" src='{{$cart->product->product_image1}}' alt=''><a style="padding-left: 30px;" class='ps-product__preview' href="/details/{{$cart->product->id}}">{{$cart->product->name}}</a></td>
+                                <td><img style= "height: 100px; width: 100px; object-fit: cover;" src='/{{$cart->product->product_image1}}' alt=''><a style="padding-left: 30px;" class='ps-product__preview' href="/details/{{$cart->product->id}}">{{$cart->product->name}}</a></td>
                                 <td>${{$cart->product->new_price}}</td>
                                 <td>
                                     <div class="form-group--number">
@@ -29,11 +29,11 @@
                                                 <span>-</span>
                                             </button>
                                         </form>
-                                        <input class="form-control" type="number" value="{{$cart->quantity}}" min="1">
+                                        <input id="quantity" class="form-control" type="number" value="{{$cart->quantity}}" min="1">
                                         <form style="display: inline;" action="{{route('user.cart.incrementqty', $cart->id)}}" method="post">
                                             @csrf
                                             <input type="hidden" id="quantity" name="quantity" value="{{$cart->id}}">
-                                            <button type="submit" class="plus" @if($cart->quantity == $cart->product->count) disabled @endif>
+                                            <button onclick="add()" class="plus" @if($cart->quantity == $cart->product->count) disabled @endif>
                                                 <span>+</span>
                                             </button>
                                         </form>

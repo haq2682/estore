@@ -25,7 +25,6 @@ class ProductController extends Controller
         return view('products.search', compact('products_search'));
     }
     public function show(Request $request, $id) {
-        $products = Product::where('category_id', '=', $id)->paginate(15);
         $category = Category::find($id);
        if($request->get('sort') == 'name') {
             $products = Product::where('category_id', '=', $id)->orderBy('name', 'ASC')->paginate(15);
@@ -35,7 +34,7 @@ class ProductController extends Controller
             $products = Product::where('category_id', '=', $id)->orderBy('new_price', 'DESC')->paginate(15);
         }
         else {
-            $products = Product::where('category_id', '=', $id)->orderBy('name', 'ASC')->paginate(15);
+            $products = Product::where('category_id', '=', $id)->orderBy('name', 'ASC')->paginate(1);
         }
         return view('products.show', ['products'=>$products, 'category'=>$category]);
     }
@@ -43,7 +42,10 @@ class ProductController extends Controller
         $details = Product::find($id);
         $category_id = $details->category_id;
         $comments = Comment::all()->where('product_id', $id);
-        $recommendations = Product::all()->random(10)->where('category_id', $category_id);
+        $recommendations = null;
+        if(Product::all()->count() >= 10) {
+            $recommendations = Product::all()->random(10)->where('category_id', $category_id);
+        }
         if(Auth::check()) {
             $wishlist = Wishlist::where('product_id', '=', $id)->where('user_id', '=', auth()->user()->id)->first();
             $cart = Cart::where('user_id', '=', auth()->user()->id)->where('product_id', '=', $details->id)->first();
@@ -56,64 +58,59 @@ class ProductController extends Controller
         $products_discount = Product::where('old_price', '>', 0)->get();
         return view('products.discount', compact('products_discount'));
     }
-    public function add(Request $request) {
-        $inputs = $request->validate([
+    public function add() {
+        $inputs = request()->validate([
+            'category_id' => 'required',
             'name' => 'required|regex:/^[\w\-\s]+$/',
-            'overview' => 'required|min:100|max:255',
             'description' => 'required|min:300',
             'product_image1' => 'required|mimes:jpg,png,bmp',
-//            'product_image2' => 'required|mimes:jpg,png,bmp',
-//            'product_image3' => 'required|mimes:jpg,png,bmp',
-//            'product_image4' => 'required|mimes:jpg,png,bmp',
-//            'product_image5' => 'required|mimes:jpg,png,bmp',
+            'product_image2' => 'required|mimes:jpg,png,bmp',
+            'product_image3' => 'required|mimes:jpg,png,bmp',
+            'product_image4' => 'required|mimes:jpg,png,bmp',
+            'product_image5' => 'required|mimes:jpg,png,bmp',
+            'overview' => 'required|min:100|max:255',
             'count' => 'required',
             'new_price' => 'required',
-            'old_price',
-            'category_id' => 'required',
+            'old_price' => 'nullable',
         ]);
-        if(!$request->old_price) {
+        if(!request('old_price')) {
             $inputs['old_price'] = 0;
         }
-        $path = public_path()."\images\products\\".auth()->user()->id;
+        $path = public_path()."\images\products\\".auth()->user()->name;
         if(!$path) {
             File::makeDirectory($path, $mode = 0777, true, true);
         }
         if(request('product_image1')) {
-            $inputs['product_image1'] = request('product_image1')->store('images', 'public');
+            $inputs['product_image1'] = request('product_image1')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image2'] = request('product_image2')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image3'] = request('product_image3')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image4'] = request('product_image4')->store('images/products/'. auth()->user()->name, 'public');
+            $inputs['product_image5'] = request('product_image5')->store('images/products/'. auth()->user()->name, 'public');
         }
-        return [
-            $inputs['name'],
-            $inputs['overview'],
-            $inputs['description'],
-            $inputs['product_image1'],
-            $inputs['count'],
-            $inputs['new_price'],
-//            $inputs['old_price'],
-            $inputs['category_id'],
-        ];
-//        $inputs['product_image2'] = $request->product_image2->store('images/products/'. auth()->user()->id, 'public');
-//        $inputs['product_image3'] = $request->product_image3->store('images/products/'. auth()->user()->id, 'public');
-//        $inputs['product_image4'] = $request->product_image4->store('images/products/'. auth()->user()->id, 'public');
-//        $inputs['product_image5'] = $request->product_image5->store('images/products/'. auth()->user()->id, 'public');
-//        Product::create([
-//           'user_id' => auth()->user()->id,
-//           'stock_status' => 'instock',
-//            'category_id' => $inputs['category_id'],
-//            'name' => $inputs['name'],
-//            'overview' => $inputs['overview'],
-//            'description' => $inputs['description'],
-//            'product_image1' => $inputs['product_image1'],
-//            'product_image2' => $inputs['product_image2'],
-//            'product_image3' => $inputs['product_image3'],
-//            'product_image4' => $inputs['product_image4'],
-//            'product_image5' => $inputs['product_image5'],
-//            'count' => $inputs['count'],
-//            'new_price' => $inputs['new_price'],
-//            'old_price' => $inputs['old_price'],
-//            'sold' => 0,
-//        ]);
-        auth()->user()->products()->create($inputs);
+        Product::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => $inputs['category_id'],
+            'name' => $inputs['name'],
+            'stock_status' => 'instock',
+            'description' => $inputs['description'],
+            'product_image1' => $inputs['product_image1'],
+            'product_image2' => $inputs['product_image2'],
+            'product_image3' => $inputs['product_image3'],
+            'product_image4' => $inputs['product_image4'],
+            'product_image5' => $inputs['product_image5'],
+            'overview' => $inputs['overview'],
+            'count' => $inputs['count'],
+            'old_price' => $inputs['old_price'],
+            'new_price' => $inputs['new_price'],
+            'sold' => 0,
+        ]);
         session()->flash('message', 'Product created successfully!');
+        return back();
+    }
+    public function delete($id) {
+        $product = Product::find($id);
+        $product->delete();
+        session()->flash('message', 'Product deleted successfully!');
         return back();
     }
 }

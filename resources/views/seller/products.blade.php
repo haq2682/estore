@@ -1,5 +1,10 @@
 <x-seller-master>
     @section('objects')
+        @if(session()->has('message'))
+            <span class="alert alert-danger" role="alert">
+                {{session('message')}}
+            </span>
+        @endif
         <div class="app-wrapper">
 
             <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -64,8 +69,14 @@
                                                 <td class="cell">{{$product->old_price}}</td>
                                                 <td class="cell">{{$product->new_price}}</td>
                                                 <td class="cell">{{$product->category->name}}</td>
-                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">Delete</a></td>
+                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('products.details', $product->id)}}">View</a></td>
+                                                <td class="cell">
+                                                    <form action="{{route('seller.delete', $product->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" style="background: none; border: none;"><a class="btn-sm app-btn-secondary">Delete</a></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                                 @endforeach
 
@@ -76,20 +87,23 @@
                             @else
                                 <h4 style="text-align: center;">You haven't posted any product yet.</h4>
                             @endif
-                            <nav class="app-pagination">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav><!--//app-pagination-->
-
+                                <div class="ps-pagination">
+                                    @if ($products->lastPage() > 1)
+                                        <ul class="pagination">
+                                            @if ($products->currentPage() > 4 && $page === 2)
+                                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                            @endif
+                                            <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
+                                            @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                                <li class="{{($products->currentPage()==$i) ? 'active' : ''}}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($i))['query']}}">{{$i}}</a></li>
+                                            @endfor
+                                            <li class="{{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}"><a href="{{"show?".request()->getQueryString()."&".parse_url($products->url($products->currentPage()+1))['query'] }}" @if($products->currentPage() == $products->lastPage()) disabled @endif><i class="fa fa-angle-right"></i></a></li>
+                                            @if ($products->currentPage() < $products->lastPage() - 3)
+                                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                            @endif
+                                        </ul>
+                                    @endif
+                                </div>
                         </div><!--//tab-pane-->
                     </div><!--//tab-content-->
 

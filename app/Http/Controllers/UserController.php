@@ -24,7 +24,7 @@ class UserController extends Controller
     public function updateInfo(Request $request)
     {
         $user = Auth::user();
-        $u = User::findOrFail($user->id);
+        $u = User::find($user->id);
         $u->name = $request->name;
         $u->email = $request->email;
         $u->save();
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function updateAvatar()
     {
-        $user = User::findOrFail(auth()->user()->id);
+        $user = User::find(auth()->user()->id);
         $inputs = request()->validate([
             'avatar' => 'mimes:jpg,png,bmp,gif',
         ]);
@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $user = User::findOrFail(auth()->user()->id);
+        $user = User::find(auth()->user()->id);
         $oldpass = $request->oldpass;
         $newpass = $request->newpass;
         $confirmpass = $request->confirmpass;

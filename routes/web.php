@@ -64,4 +64,5 @@ Route::middleware('seller')->group(function() {
     Route::get('/seller/products', 'SellerController@products')->name('seller.products');
     Route::get('/seller/products/create', 'SellerController@create')->name('seller.create_product');
     Route::post('/seller/products/add', 'ProductController@add')->name('seller.add');
+    Route::delete('/seller/products/delete/{id}', 'ProductController@delete')->name('seller.delete');
 });

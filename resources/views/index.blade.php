@@ -13,7 +13,7 @@
                             </div>
                             <div class="tp-caption ps-banner__description" id="layer211" data-x="['left','left','left','left']" data-hoffset="['-60','15','15','15']" data-y="['middle','middle','middle','middle']" data-voffset="['30','50','50','50']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;delay&quot;:1200,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;x:50px;opacity:0;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;x:50px;opacity:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]">
                                 <div class="shadow p-3 mb-5"><p>Loaded into a rugged aluminum body,  <br> Corsair LUX keyboards provide <br/> the ultimate experience for every situation.</p></div>
-                            </div><a class="tp-caption ps-btn" id="layer31" href="{{route('products.details', 1)}}" data-x="['left','left','left','left']" data-hoffset="['-60','15','15','15']" data-y="['middle','middle','middle','middle']" data-voffset="['120','140','200','200']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;delay&quot;:1500,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;x:50px;opacity:0;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;x:50px;opacity:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]">Purchase Now<i class="ps-icon-next"></i></a>
+                            </div><a class="tp-caption ps-btn" id="layer31" href="{{route('products.details', 3)}}" data-x="['left','left','left','left']" data-hoffset="['-60','15','15','15']" data-y="['middle','middle','middle','middle']" data-voffset="['120','140','200','200']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;delay&quot;:1500,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;x:50px;opacity:0;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;x:50px;opacity:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]">Purchase Now<i class="ps-icon-next"></i></a>
                         </li>
                         <li class="ps-banner ps-banner--white" data-index="rs-100" data-transition="random" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-rotate="0"><img class="rev-slidebg" src="{{asset('img/g502_lightspeed.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" data-no-retina>
                             <div class="tp-caption ps-banner__header" id="layer20" data-x="left" data-hoffset="['-60','15','15','15']" data-y="['middle','middle','middle','middle']" data-voffset="['-150','-120','-150','-170']" data-width="['none','none','none','400']" data-type="text" data-responsive_offset="on" data-frames="[{&quot;delay&quot;:1000,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;x:50px;opacity:0;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;x:50px;opacity:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]">
@@ -38,7 +38,7 @@
                         <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                             <div class="ps-masonry">
                                 <div class="grid-sizer"></div>
-                                @if($products_recent)
+                                @if(count($products_recent) > 0)
                                 @foreach($products_recent as $product)
                                         <div class="grid-item">
                                             <div class="grid-item__content-wrapper">
@@ -50,7 +50,7 @@
                                                     </div>
                                                     <div class="ps-shoe__content">
                                                         <div class="ps-shoe__variants">
-                                                            <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"> </div>
+                                                            <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
                                                             <div>Seller: {{$product->user->name}}</div>
                                                         </div>
                                                         <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>
@@ -82,7 +82,7 @@
                     <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                         <div class="ps-masonry">
                             <div class="grid-sizer"></div>
-                            @if($products_sales)
+                            @if(count($products_sales) > 0)
                                 @foreach($products_sales as $product)
                                     <div class="grid-item">
                                         <div class="grid-item__content-wrapper">
@@ -94,7 +94,7 @@
                                                 </div>
                                                 <div class="ps-shoe__content">
                                                     <div class="ps-shoe__variants">
-                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"> </div>
+                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
                                                         <div>Seller: {{$product->user->name}}</div>
                                                     </div>
                                                     <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>
@@ -123,7 +123,7 @@
                     <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                         <div class="ps-masonry">
                             <div class="grid-sizer"></div>
-                            @if($products_discount)
+                            @if(count($products_discount) > 0)
                                 @foreach($products_discount as $product)
                                     <div class="grid-item">
                                         <div class="grid-item__content-wrapper">
@@ -135,7 +135,7 @@
                                                 </div>
                                                 <div class="ps-shoe__content">
                                                     <div class="ps-shoe__variants">
-                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"> </div>
+                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
                                                         <div>Seller: {{$product->user->name}}</div>
                                                     </div>
                                                     <div class="ps-shoe__detail"><a class="ps-shoe__name" href="{{route('products.details', $product->id)}}">{{$product->name}}</a>

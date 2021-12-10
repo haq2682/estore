@@ -99,7 +99,7 @@
                                 @if(count($carts)>0)
                                     @foreach($carts as $cart)
                                         <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                            <div class="ps-cart-item__thumbnail"><a href="{{route('products.details', $cart->product->id)}}"></a><img src="{{$cart->product->product_image1}}" alt=""></div>
+                                            <div class="ps-cart-item__thumbnail"><a href="{{route('products.details', $cart->product->id)}}"></a><img src="/{{$cart->product->product_image1}}" alt=""></div>
                                             <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="{{route('products.details', $cart->product->id)}}">{{$cart->product->name}}</a>
                                                 <p><span>Quantity:<i>{{$cart->quantity}}</i></span><span>Total:<i>${{$cart->subtotal}}</i></span></p>
                                             </div>
