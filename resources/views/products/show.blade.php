@@ -37,7 +37,7 @@
                                 @if ($products->currentPage() > 4 && $page === 2)
                                     <li class="page-item disabled"><span class="page-link">...</span></li>
                                 @endif
-                                <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{request()->getQueryString().$category->id."?".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
+                                <li class="{{($products->currentPage()==1)? 'disabled' : ''}}"><a href="{{$category->id.request()->getQueryString()."?".parse_url($products->url(1))['query']}}" @if($products->currentPage()==1) disabled @endif><i class="fa fa-angle-left"></i></a></li>
                                 @for ($i = 1; $i <= $products->lastPage(); $i++)
                                     <li class="{{($products->currentPage()==$i) ? 'active' : ''}}"><a href="{{$category->id.request()->getQueryString()."?".parse_url($products->url($i))['query']}}">{{$i}}</a></li>
                                 @endfor
@@ -57,9 +57,9 @@
                     </div>
                     <div class="ps-product__filter">
                         <ul>
-                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=name"}}">Name</a></li>
-                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=price_low"}}">Price (Low to High)</a></li>
-                            <li><a href="{{request()->getQueryString().$category->id."&"."sort=price_high"}}">Price (High to Low)</a></li>
+                            <li><a href="{{$category->id."?".request()->getQueryString()."&"."sort=name"}}">Name</a></li>
+                            <li><a href="{{$category->id."?".request()->getQueryString()."&"."sort=price_low"}}">Price (Low to High)</a></li>
+                            <li><a href="{{$category->id."?".request()->getQueryString()."&"."sort=price_high"}}">Price (High to Low)</a></li>
                         </ul>
                     </div>
                 </aside>

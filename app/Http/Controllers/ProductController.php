@@ -34,7 +34,7 @@ class ProductController extends Controller
             $products = Product::where('category_id', '=', $id)->orderBy('new_price', 'DESC')->paginate(15);
         }
         else {
-            $products = Product::where('category_id', '=', $id)->orderBy('name', 'ASC')->paginate(1);
+            $products = Product::where('category_id', '=', $id)->orderBy('name', 'ASC')->paginate(15);
         }
         return view('products.show', ['products'=>$products, 'category'=>$category]);
     }

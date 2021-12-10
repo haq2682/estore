@@ -61,4 +61,11 @@ class SellerController extends Controller
         $categories = Category::all();
         return view('seller.create_product', compact('categories'));
     }
+    public function edit($id) {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
+        $item = Product::find($id);
+        return view('seller.edit_product', $item);
+    }
 }
