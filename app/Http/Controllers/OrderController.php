@@ -47,6 +47,7 @@ class OrderController extends Controller
                 'phone' => $phone,
                 'orderno' => $orderno,
                 'user_id' => auth()->user()->id,
+                'seller_id' => $cart->product->user_id,
                 'product_id' => $cart->product->id,
                 'quantity' => $cart->quantity,
                 'subtotal' => $cart->subtotal,

@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('seller_id');
             $table->foreignId('orderstatus_id')->constrained()->onDelete('cascade');
             $table->integer('orderno');
             $table->integer('quantity');

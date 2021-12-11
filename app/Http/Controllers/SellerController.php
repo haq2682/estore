@@ -68,4 +68,8 @@ class SellerController extends Controller
         $item = Product::find($id);
         return view('seller.edit_product', $item);
     }
+    public function displayOrders() {
+        $orders = Order::where('seller_id', '=', auth()->user()->id);
+        return view('seller.orders', compact('orders'));
+    }
 }

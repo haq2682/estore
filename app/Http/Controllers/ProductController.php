@@ -80,13 +80,11 @@ class ProductController extends Controller
         if(!$path) {
             File::makeDirectory($path, $mode = 0777, true, true);
         }
-        if(request('product_image1')) {
-            $inputs['product_image1'] = request('product_image1')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image2'] = request('product_image2')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image3'] = request('product_image3')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image4'] = request('product_image4')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image5'] = request('product_image5')->store('images/products/'. auth()->user()->name, 'public');
-        }
+        $inputs['product_image1'] = request('product_image1')->store('images/products/'. auth()->user()->name, 'public');
+        $inputs['product_image2'] = request('product_image2')->store('images/products/'. auth()->user()->name, 'public');
+        $inputs['product_image3'] = request('product_image3')->store('images/products/'. auth()->user()->name, 'public');
+        $inputs['product_image4'] = request('product_image4')->store('images/products/'. auth()->user()->name, 'public');
+        $inputs['product_image5'] = request('product_image5')->store('images/products/'. auth()->user()->name, 'public');
         Product::create([
             'user_id' => auth()->user()->id,
             'category_id' => $inputs['category_id'],
@@ -116,18 +114,19 @@ class ProductController extends Controller
     public function edit($id) {
         $product = Product::find($id);
         $categories = Category::all();
-        return view('seller.edit_product', compact('product', 'categories'));    
+        return view('seller.edit_product', compact('product', 'categories'));
     }
     public function update($id) {
+        $product = Product::find($id);
         $inputs = request()->validate([
             'category_id' => 'required',
             'name' => 'required|regex:/^[\w\-\s]+$/',
             'description' => 'required|min:300',
-            'product_image1' => 'required|mimes:jpg,png,bmp',
-            'product_image2' => 'required|mimes:jpg,png,bmp',
-            'product_image3' => 'required|mimes:jpg,png,bmp',
-            'product_image4' => 'required|mimes:jpg,png,bmp',
-            'product_image5' => 'required|mimes:jpg,png,bmp',
+            'product_image1' => 'mimes:jpg,png,bmp',
+            'product_image2' => 'mimes:jpg,png,bmp',
+            'product_image3' => 'mimes:jpg,png,bmp',
+            'product_image4' => 'mimes:jpg,png,bmp',
+            'product_image5' => 'mimes:jpg,png,bmp',
             'overview' => 'required|min:100|max:255',
             'count' => 'required',
             'new_price' => 'required',
@@ -140,12 +139,27 @@ class ProductController extends Controller
         if(!$path) {
             File::makeDirectory($path, $mode = 0777, true, true);
         }
-        if(request('product_image1')) {
-            $inputs['product_image1'] = request('product_image1')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image2'] = request('product_image2')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image3'] = request('product_image3')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image4'] = request('product_image4')->store('images/products/'. auth()->user()->name, 'public');
-            $inputs['product_image5'] = request('product_image5')->store('images/products/'. auth()->user()->name, 'public');
+        if(!request('product_image1')) {
+            $inputs['product_image1'] = $product->product_image1;
+        }
+        elseif(!$inputs['product_image2']) {
+            $inputs['product_image2'] = $product->product_image2;
+        }
+        elseif(!$inputs['product_image3']) {
+            $inputs['product_image3'] = $product->product_image3;
+        }
+        elseif(!$inputs['product_image4']) {
+            $inputs['product_image4'] = $product->product_image4;
+        }
+        elseif(!$inputs['product_image5']) {
+            $inputs['product_image5'] = $product->product_image5;
+        }
+        else {
+            $inputs['product_image1'] = request('product_image1')->store('images/products/' . auth()->user()->name, 'public');
+            $inputs['product_image2'] = request('product_image2')->store('images/products/' . auth()->user()->name, 'public');
+            $inputs['product_image3'] = request('product_image3')->store('images/products/' . auth()->user()->name, 'public');
+            $inputs['product_image4'] = request('product_image4')->store('images/products/' . auth()->user()->name, 'public');
+            $inputs['product_image5'] = request('product_image5')->store('images/products/' . auth()->user()->name, 'public');
         }
         Product::update([
             'user_id' => auth()->user()->id,

@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Product Image 1</label>
-                                            <input name="product_image1" type="file" class="form-control @error('product_image1') is-invalid @enderror" value="{{$product->product_image1}}">
+                                            <input name="product_image1" type="file" class="form-control @error('product_image1') is-invalid @enderror">
                                             @error('product_image1')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Product Image 2</label>
-                                            <input name="product_image2" type="file" class="form-control @error('product_image2') is-invalid @enderror" value="{{$product->product_image2}}">
+                                            <input name="product_image2" type="file" class="form-control @error('product_image2') is-invalid @enderror">
                                             @error('product_image2')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Product Image 3</label>
-                                            <input name="product_image3" type="file" class="form-control @error('product_image3') is-invalid @enderror" value="{{$product->product_image3}}">
+                                            <input name="product_image3" type="file" class="form-control @error('product_image3') is-invalid @enderror">
                                             @error('product_image3')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Product Image 4</label>
-                                            <input name="product_image4" type="file" class="form-control @error('product_image4') is-invalid @enderror" value="{{$product->product_image4}}">
+                                            <input name="product_image4" type="file" class="form-control @error('product_image4') is-invalid @enderror">
                                             @error('product_image4')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Product Image 5</label>
-                                            <input name="product_image5" type="file" class="form-control @error('product_image5') is-invalid @enderror" value="{{$product->product_image5}}">
+                                            <input name="product_image5" type="file" class="form-control @error('product_image5') is-invalid @enderror">
                                             @error('product_image5')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
