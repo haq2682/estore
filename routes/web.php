@@ -68,4 +68,5 @@ Route::middleware('seller')->group(function() {
     Route::delete('/seller/products/delete/{id}', 'ProductController@delete')->name('seller.delete');
     Route::get('/seller/products/edit/{id}', 'ProductController@edit')->name('seller.edit_product');
     Route::put('/seller/products/update/{id}', 'ProductController@update')->name('seller.update');
+    Route::get('/seller/orders', 'SellerController@displayOrders')->name('seller.orders');
 });

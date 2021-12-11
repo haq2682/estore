@@ -79,9 +79,11 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a class="btn-sm app-btn-secondary" href="{{route('seller.edit_product', $product->id)}}">
-                                                        Edit
-                                                    </a>
+                                                    <button style="background: none; border: none;">
+                                                        <a class="btn-sm app-btn-secondary" href="{{route('seller.edit_product', $product->id)}}">
+                                                            Edit
+                                                        </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                                 @endforeach

@@ -39,8 +39,8 @@
                                         </div>
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">Description</label>
-                                            <textarea style="
-  height: 300px;" name="description" class="form-control @error('description') is-invalid @enderror" value="{{$product->description}}"></textarea>
+                                            <input style="
+  height: 300px;" name="description" class="form-control @error('description') is-invalid @enderror" value="{{$product->description}}">
                                             @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
