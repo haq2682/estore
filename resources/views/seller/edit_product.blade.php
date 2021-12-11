@@ -1,7 +1,7 @@
 <x-seller-master>
     @section('objects')
         @if(session()->has('message'))
-            <div class="alert alert-success" role="alert">
+            <div style="text-align: center;" class="alert alert-success" role="alert">
                 {{session('message')}}
             </div>
         @endif

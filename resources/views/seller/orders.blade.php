@@ -30,7 +30,7 @@
 
                     <div class="tab-content" id="orders-table-tab-content">
                         <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
-                            @if(count($products)>0)
+                            @if(count($orders)>0)
                             <div class="app-card app-card-orders-table shadow-sm mb-5">
                                 <div class="app-card-body">
 
@@ -38,12 +38,28 @@
                                         <table class="table app-table-hover mb-0 text-left">
                                             <thead>
                                             <tr>
-                                                <th class="cell">ID</th>
+                                                <th class="cell">Order #</th>
+                                                <th class="cell">Product Name</th>
+                                                <th class="cell">Customer Name</th>
+                                                <th class="cell">Status</th>
+                                                <th class="cell">Subtotal</th>
+                                                <th class="cell">Total</th>
+                                                <th class="cell">Address</th>
+                                                <th class="cell">Contact #</th>
+                                                <th class="cell"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($orders as $order)
                                             <tr>
+                                                <td>{{$order->orderno}}</td>
+                                                <td>{{$order->product->name}}</td>
+                                                <td>{{$order->user->name}}</td>
+                                                <td>{{$order->orderstatus->status}}</td>
+                                                <td>{{$order->subtotal}}</td>
+                                                <td>{{$order->total}}</td>
+                                                <td>{{$order->address}}, {{$order->city}}, {{$order->province}}, {{$order->country}}, {{$order->postal_code}}</td>
+                                                <td>{{$order->phone}}</td>
                                                 <td>
                                                     <a class="btn-sm app-btn-secondary" href="{{route('seller.edit_status', $order->id)}}">
                                                         Edit Status
@@ -57,7 +73,7 @@
                                 </div><!--//app-card-body-->
                             </div><!--//app-card-->
                             @else
-                                <h4 style="text-align: center;">You haven't posted any product yet.</h4>
+                                <h4 style="text-align: center;">You don't have any orders yet.</h4>
                             @endif
                         </div><!--//tab-pane-->
                     </div><!--//tab-content-->

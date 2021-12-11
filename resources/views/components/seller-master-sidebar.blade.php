@@ -2,7 +2,7 @@
     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
         <li class="nav-item">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <a class="nav-link active" href="{{route('seller.dashboard')}}">
+            <a class="nav-link @if(request()->getQueryString() === 'dashboard') active @endif" href="{{route('seller.dashboard')}}">
 						        <span class="nav-icon">
 						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
@@ -13,7 +13,7 @@
         </li><!--//nav-item-->
         <li class="nav-item">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <a class="nav-link" href="orders.html">
+            <a class="nav-link @if(request()->getQueryString() === 'orders') active @endif" href="{{route('seller.orders')}}">
 						        <span class="nav-icon">
 						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>

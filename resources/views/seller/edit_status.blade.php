@@ -1,5 +1,10 @@
 <x-seller-master>
 	@section('objects')
+        @if(session()->has('message'))
+            <div style="text-align: center;" class="alert alert-success" role="alert">
+                {{session('message')}}
+            </div>
+        @endif
 		<div class="app-wrapper">
 
             <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -16,20 +21,21 @@
                                         @method('PUT')
                                         <div class="mb-3 form-group form-group--inline">
                                             <label class="form-label">
-                                                Category
+                                                Statuses
                                             </label>
-                                            <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                                                @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <h5>Current Status: {{$order->orderstatus->status}}</h5>
+                                            <select name="status" class="form-control @error('status') is-invalid @enderror">
+                                                @foreach($statuses as $status)
+                                                <option value="{{$status->id}}">{{$status->status}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
+                                            @error('status')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{$message}}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="btn app-btn-primary">Add Product</button>
+                                        <button type="submit" class="btn app-btn-primary">Save Changes</button>
                                     </form>
                                 </div><!--//app-card-body-->
 

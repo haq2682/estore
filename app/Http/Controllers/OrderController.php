@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Orderstatus;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
@@ -85,5 +86,21 @@ class OrderController extends Controller
         } else {
             return 'Order not found!';
         }
+    }
+    public function show() {
+        $orders = Order::where('seller_id', '=', auth()->user()->id)->get();
+        return view('seller.orders', compact('orders'));
+    }
+    public function edit($id) {
+        $statuses = Orderstatus::all();
+        $order = Order::find($id);
+        return view('seller.edit_status', compact('order', 'statuses'));
+    }
+    public function updateStatus($id) {
+        Order::where('id', '=', $id)->update([
+            'orderstatus_id' => request('status'),
+        ]);
+        session()->flash('message', 'Order Status updated successfully!');
+        return back();
     }
 }

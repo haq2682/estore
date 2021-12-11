@@ -29,10 +29,10 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12">
                         <ul id="progressbar" class="text-center">
-                            <li class=" @if($status === 'processed' || $status === 'shipped' || $status === 'enroute' || $status === 'delievered') active @endif step0"></li>
-                            <li class=" @if($status === 'shipped' || $status === 'enroute' || $status === 'delievered') active @endif step0"></li>
-                            <li class=" @if($status === 'enroute' || $status === 'delievered') active @endif step0"></li>
-                            <li class=" @if($status === 'delievered') active @endif step0"></li>
+                            <li class=" @if($status === 'Placed' || $status === 'Shipped' || $status === 'Enroute' || $status === 'Delievered') active @endif step0"></li>
+                            <li class=" @if($status === 'Shipped' || $status === 'Enroute' || $status === 'Delievered') active @endif step0"></li>
+                            <li class=" @if($status === 'Enroute' || $status === 'Delievered') active @endif step0"></li>
+                            <li class=" @if($status === 'Delievered') active @endif step0"></li>
                         </ul>
                     </div>
                 </div>

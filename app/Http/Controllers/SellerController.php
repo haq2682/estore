@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Sale;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class SellerController extends Controller
@@ -67,9 +67,5 @@ class SellerController extends Controller
         }
         $item = Product::find($id);
         return view('seller.edit_product', $item);
-    }
-    public function displayOrders() {
-        $orders = Order::where('seller_id', '=', auth()->user()->id);
-        return view('seller.orders', compact('orders'));
     }
 }
