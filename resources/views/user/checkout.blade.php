@@ -1,3 +1,4 @@
+<title>E-Store - Checkout</title>
 <x-home-master>
     @section('content')
         <div class="ps-checkout pt-80 pb-80">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+    <title>E-Store (Seller Dashboard)</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -17,6 +17,7 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{asset('assets/css/portal.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.datatables.min.css')}}">
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -38,7 +39,7 @@
         <div class="sidepanel-inner d-flex flex-column">
             <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
             <div class="app-branding">
-                <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"><span class="logo-text">PORTAL</span></a>
+                <a class="app-logo" href="{{route('index')}}"><span class="logo-text">E-Store</span></a>
 
             </div><!--//app-branding-->
 
@@ -54,14 +55,17 @@
 
 
 <!-- Javascript -->
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('assets/plugins/popper.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery.datatables.min.js')}}"></script>
 <!-- Charts JS -->
 <script src="{{asset('assets/plugins/chart.js/chart.min.js')}}"></script>
 {{--<script src="{{asset('assets/js/index-charts.js')}}"></script>--}}
 
 <!-- Page Specific JS -->
 <script src="{{asset('assets/js/app.js')}}"></script>
+@yield('scripts')
 
 </body>
 </html>

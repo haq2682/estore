@@ -1,3 +1,4 @@
+<title>E-Store - Policies</title>
 <x-home-master>
     @section('content')
         <div style="text-align: center; background-color: #e2e2e2; padding: 50px; margin-top: 20px;" class="container">

@@ -1,3 +1,4 @@
+<title>E-Store - Search Results</title>
 <x-home-master>
     @section('content')
         <div class="ps-section--features-product ps-section masonry-root pt-100 pb-100">

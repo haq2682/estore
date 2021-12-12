@@ -1,3 +1,4 @@
+<title>E-Store - Track Order</title>
 <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
 <style>
     #category-header {

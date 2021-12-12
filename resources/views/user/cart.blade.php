@@ -1,3 +1,4 @@
+<title>E-Store - Cart</title>
 <x-home-master>
     @section('content')
         <main class="ps-main">

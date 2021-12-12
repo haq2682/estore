@@ -71,4 +71,5 @@ Route::middleware('seller')->group(function() {
     Route::get('/seller/orders', 'OrderController@show')->name('seller.orders');
     Route::get('/seller/orders/edit_status/{id}', 'OrderController@edit')->name('seller.edit_status');
     Route::put('/seller/orders/update_status/{id}', 'OrderController@updateStatus')->name('seller.update_status');
+    Route::get('/seller/solditems', 'SellerController@solditems')->name('seller.solditems');
 });

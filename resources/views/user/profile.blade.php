@@ -1,3 +1,4 @@
+<title>E-Store - Profile</title>
 <x-home-master>
 
     @section('content')

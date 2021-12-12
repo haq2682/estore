@@ -44,14 +44,15 @@ class SellerController extends Controller
                 $products = Sale::where('user_id', '=', auth()->user()->id)->limit(10)->get();
                 $sum = Sale::where('user_id', '=', auth()->user()->id)->sum('total');
                 $items_sold = Product::where('user_id', '=', auth()->user()->id)->sum('sold');
+                $orders = Order::where('seller_id', '=', auth()->user()->id)->get();
             }
-            return view('seller.dashboard', compact('sold', 'total', 'products', 'sum', 'items_sold'));
+            return view('seller.dashboard', compact('sold', 'total', 'products', 'sum', 'items_sold', 'orders'));
     }
     public function products() {
         if (!Gate::allows('seller-dashboard')) {
             abort(403);
         }
-        $products = Product::where('user_id', '=', auth()->user()->id)->paginate(10);
+        $products = Product::where('user_id', '=', auth()->user()->id)->get();
         return view('seller.products', compact('products'));
     }
     public function create() {
@@ -67,5 +68,9 @@ class SellerController extends Controller
         }
         $item = Product::find($id);
         return view('seller.edit_product', $item);
+    }
+    public function solditems() {
+        $orders = Order::where('seller_id', '=', auth()->user()->id)->where('orderstatus_id', '=', 4)->get();
+        return view('seller.solditems', compact('orders'));
     }
 }

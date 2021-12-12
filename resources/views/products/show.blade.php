@@ -1,3 +1,4 @@
+<title>E-Store - {{$category->name}}</title>
 <x-home-master>
     @section('content')
         <div class="ps-products-wrap inverse pt-80 pb-80">

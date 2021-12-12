@@ -1,3 +1,4 @@
+<title>E-Store - {{$details->name}}</title>
 <x-home-master>
 
     @section('content')

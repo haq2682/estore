@@ -1,3 +1,4 @@
+<title>E-Store - Verify</title>
 @extends('layouts.app')
 
 @section('content')

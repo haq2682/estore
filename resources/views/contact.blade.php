@@ -1,3 +1,4 @@
+<title>E-Store - Contact Us</title>
 <x-home-master>
     @section('content')
             <div id="contact-map" data-address="New York, NY" data-title="Sky Store!" data-zoom="17"></div>

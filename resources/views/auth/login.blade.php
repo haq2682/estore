@@ -1,3 +1,4 @@
+<title>E-Store - Login</title>
 <x-home-master>
 
 @section('content')
