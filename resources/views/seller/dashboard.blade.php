@@ -1,6 +1,6 @@
 <x-seller-master>
     @section('objects')
-        <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div style="margin-left: 250px;" class="app-content pt-3 p-md-3 p-lg-4">
             <div class="container-xl">
 
                 <h1 class="app-page-title">Overview</h1>

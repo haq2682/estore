@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Orderstatus;
+use App\Notifications\OrderPlaced;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
@@ -69,6 +70,9 @@ class OrderController extends Controller
                 'sold_to' => auth()->user()->id,
                 'total' => $sum,
             ]);
+        }
+        foreach($carts as $cart) {
+            $cart->product->user->notify(new OrderPlaced($cart));
         }
         Cart::where('user_id', '=', auth()->user()->id)->truncate();
         return view('user.ordersuccess', compact('orderno'));

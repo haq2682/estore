@@ -30,6 +30,7 @@
                             <div class="dropdown-menu-content">
                                 @if(count(auth()->user()->unreadNotifications) > 0)
                                     @foreach(auth()->user()->unreadNotifications as $notification)
+                                        @if($notification['product'])
                                         <div class="item p-3">
                                             <div class="row gx-2 justify-content-between align-items-center">
                                                 <div class="col-auto">
@@ -38,12 +39,28 @@
                                                 <div class="col">
                                                     <div class="info">
                                                         <div class="desc">{{$notification->data['user']['name']}} commented on {{$notification->data['product']['name']}}.</div>
-                                                        <div>{{$notification->created_at->diffForHumans()}}</div>
+                                                        <div class="meta">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
                                             <a class="link-mask" href="notifications.html"></a>
-                                    </div><!--//item-->
+                                        </div><!--//item-->
+                                        @else
+                                            <div class="item p-3">
+                                            <div class="row gx-2 justify-content-between align-items-center">
+                                                <div class="col-auto">
+                                                    <img class="profile-image" src="{{$notification->data['user']['avatar']}}" alt="">
+                                                </div><!--//col-->
+                                                <div class="col">
+                                                    <div class="info">
+                                                        <div class="desc">{{$notification->data['user']['name']}} ordered {{$notification->data['cart']['id']}}.</div>
+                                                        <div class="meta">{{$notification->created_at->diffForHumans()}}</div>
+                                                    </div>
+                                                </div><!--//col-->
+                                            </div><!--//row-->
+                                            <a class="link-mask" href="notifications.html"></a>
+                                        </div><!--//item-->
+                                        @endif
                                     @endforeach
                                 @else
                                     <h6 style="padding: 20px; text-align: center;">You don't have any unread notifications.</h6>

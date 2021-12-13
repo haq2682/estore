@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentedOnProduct extends Notification
+class OrderPlaced extends Notification
 {
     use Queueable;
 
@@ -17,9 +16,9 @@ class CommentedOnProduct extends Notification
      *
      * @return void
      */
-    public function __construct($product)
+    public function __construct($cart)
     {
-        $this->product = $product;
+        $this->cart = $cart;
     }
 
     /**
@@ -42,7 +41,7 @@ class CommentedOnProduct extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'product' => $this->product,
+            'cart' => $this->cart,
             'user' => auth()->user(),
         ];
     }
