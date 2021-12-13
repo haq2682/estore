@@ -65,6 +65,11 @@
 
 <!-- Page Specific JS -->
 <script src="{{asset('assets/js/app.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('.app-utilities').click(function(){$.ajax({url:'/markAsRead'})});
+    });
+</script>
 @yield('scripts')
 
 </body>
