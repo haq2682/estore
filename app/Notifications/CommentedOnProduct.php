@@ -42,8 +42,7 @@ class CommentedOnProduct extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'product' => $this->product,
-            'user' => auth()->user(),
+            auth()->user()->name . ' commented on ' . $this->product->name,
         ];
     }
 }

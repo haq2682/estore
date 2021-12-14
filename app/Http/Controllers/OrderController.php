@@ -72,7 +72,7 @@ class OrderController extends Controller
             ]);
         }
         foreach($carts as $cart) {
-            $cart->product->user->notify(new OrderPlaced($cart));
+            $cart->product->user->notify(new OrderPlaced($cart->product));
         }
         Cart::where('user_id', '=', auth()->user()->id)->truncate();
         return view('user.ordersuccess', compact('orderno'));

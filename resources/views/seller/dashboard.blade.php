@@ -29,8 +29,6 @@
                             <div class="app-card-body p-3 p-lg-4">
                                 <h4 class="stats-type mb-1">Products</h4>
                                 <div class="stats-figure">{{count($products)}}</div>
-                                <div class="stats-meta">
-                                    Open</div>
                             </div><!--//app-card-body-->
                             <a class="app-card-link-mask" href="{{route('seller.products')}}"></a>
                         </div><!--//app-card-->
