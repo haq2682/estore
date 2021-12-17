@@ -14,11 +14,11 @@
                                             @if($product->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
                                             <a style="display: none;" class="ps-shoe__favorite" href="#">
                                             </a>
-                                            <img src="/{{$product->product_image1}}" alt="">
+                                            <img src="{{asset($product->product_image1)}}" alt="">
                                         </div>
                                         <div class="ps-shoe__content">
                                             <div class="ps-shoe__variants">
-                                                <div class="ps-shoe__variant normal"><img src="/{{$product->product_image2}}" alt=""><img src="/{{$product->product_image3}}" alt=""><img src="/{{$product->product_image4}}"><img src="/{{$product->product_image5}}"> </div>
+                                                <div class="ps-shoe__variant normal"><img src="{{asset($product->product_image2)}}" alt=""><img src="{{asset($product->product_image3)}}" alt=""><img src="{{asset($product->product_image4)}}"><img src="{{asset($product->product_image5)}}"> </div>
                                                 <div>Seller: {{$product->user->name}}</div>
                                             </div>
                                             <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>

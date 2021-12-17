@@ -45,12 +45,12 @@
                                                 <div class="ps-shoe mb-30">
                                                     <div class="ps-shoe__thumbnail">
                                                         @if($product->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
-                                                        <img style="overflow: hidden; object-fit: cover;" src="{{$product->product_image1}}" alt="">
+                                                        <img style="overflow: hidden; object-fit: cover;" src="{{asset($product->product_image1)}}" alt="">
                                                         <a class="ps-shoe__overlay" href="{{route('products.details', $product->id)}}"></a>
                                                     </div>
                                                     <div class="ps-shoe__content">
                                                         <div class="ps-shoe__variants">
-                                                            <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
+                                                            <div class="ps-shoe__variant normal"><img src="{{asset($product->product_image2)}}" alt=""><img src="{{asset($product->product_image3)}}" alt=""><img src="{{asset($product->product_image4)}}"><img src="{{asset($product->product_image5)}}" alt=""> </div>
                                                             <div>Seller: {{$product->user->name}}</div>
                                                         </div>
                                                         <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>
@@ -89,12 +89,12 @@
                                             <div class="ps-shoe mb-30">
                                                 <div class="ps-shoe__thumbnail">
                                                     @if($product->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
-                                                    <img style="overflow: hidden; object-fit: cover;" src="{{$product->product_image1}}" alt="">
+                                                    <img style="overflow: hidden; object-fit: cover;" src="{{asset($product->product_image1)}}" alt="">
                                                     <a class="ps-shoe__overlay" href="{{route('products.details', $product->id)}}"></a>
                                                 </div>
                                                 <div class="ps-shoe__content">
                                                     <div class="ps-shoe__variants">
-                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
+                                                        <div class="ps-shoe__variant normal"><img src="{{asset($product->product_image2)}}" alt=""><img src="{{asset($product->product_image3)}}" alt=""><img src="{{asset($product->product_image4)}}"><img src="{{asset($product->product_image5)}}" alt=""> </div>
                                                         <div>Seller: {{$product->user->name}}</div>
                                                     </div>
                                                     <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">{{$product->name}}</a>
@@ -130,12 +130,12 @@
                                             <div class="ps-shoe mb-30">
                                                 <div class="ps-shoe__thumbnail">
                                                     @if($product->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
-                                                    <img style="overflow: hidden; object-fit: cover;" src="{{$product->product_image1}}" alt="">
+                                                    <img style="overflow: hidden; object-fit: cover;" src="{{asset($product->product_image1)}}" alt="">
                                                     <a class="ps-shoe__overlay" href="{{route('products.details', $product->id)}}"></a>
                                                 </div>
                                                 <div class="ps-shoe__content">
                                                     <div class="ps-shoe__variants">
-                                                        <div class="ps-shoe__variant normal"><img src="{{$product->product_image2}}" alt=""><img src="{{$product->product_image3}}" alt=""><img src="{{$product->product_image4}}"><img src="{{$product->product_image5}}" alt=""> </div>
+                                                        <div class="ps-shoe__variant normal"><img src="{{asset($product->product_image2)}}" alt=""><img src="{{asset($product->product_image3)}}" alt=""><img src="{{asset($product->product_image4)}}"><img src="{{asset($product->product_image5)}}" alt=""> </div>
                                                         <div>Seller: {{$product->user->name}}</div>
                                                     </div>
                                                     <div class="ps-shoe__detail"><a class="ps-shoe__name" href="{{route('products.details', $product->id)}}">{{$product->name}}</a>

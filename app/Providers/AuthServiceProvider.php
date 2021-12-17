@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::define('seller-dashboard', function () {
-            return auth()->user()->roles[0]->name === 'seller';
+            return auth()->user()->userHasRole('seller');
         });
     }
 }

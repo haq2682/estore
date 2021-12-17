@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Role;
 use App\Models\Sale;
+use App\Models\SellerRequest;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -43,7 +46,7 @@ class SellerController extends Controller
                 $total[$month] = (int)$transaksi2;
                 $products = Sale::where('user_id', '=', auth()->user()->id)->limit(10)->get();
                 $sum = Sale::where('user_id', '=', auth()->user()->id)->sum('total');
-                $items_sold = Product::where('user_id', '=', auth()->user()->id)->sum('sold');
+                $items_sold = Sale::where('user_id', '=', auth()->user()->id)->count();
                 $orders = Order::where('seller_id', '=', auth()->user()->id)->get();
             }
             return view('seller.dashboard', compact('sold', 'total', 'products', 'sum', 'items_sold', 'orders'));
@@ -70,7 +73,50 @@ class SellerController extends Controller
         return view('seller.edit_product', $item);
     }
     public function solditems() {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
         $orders = Order::where('seller_id', '=', auth()->user()->id)->where('orderstatus_id', '=', 4)->get();
         return view('seller.solditems', compact('orders'));
+    }
+    public function notifications() {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
+        return view('seller.notifications');
+    }
+    public function clearAllNotifications() {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
+        auth()->user()->notifications->each->truncate();
+        return back();
+    }
+    public function showRequests() {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
+        $requests = SellerRequest::all();
+        return view('seller.requests', compact('requests'));
+    }
+    public function grant($id) {
+        if (!Gate::allows('seller-dashboard')) {
+            abort(403);
+        }
+        $user = User::find($id);
+        if($user->userHasRole('seller')) {
+            return false;
+        }
+        else {
+            $seller_role = Role::find(1);
+            $user->roles()->attach($seller_role);
+            SellerRequest::where('user_id', '=', $id)->delete();
+            return back();
+        }
+    }
+    public function deleteRequest($id) {
+        $request = SellerRequest::find($id);
+        $request->delete();
+        return back();
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('index');
 //});
+Auth::routes(['verify'=> true]);
 
 Route::get('/', 'ProductController@index')->name('index');
 Route::get('/search', 'ProductController@search')->name('products.search');
@@ -31,10 +32,10 @@ Route::get('/policies', 'Controller@policies')->name('policies');
 Route::get('/contact', 'Controller@contact')->name('contact');
 Route::post('/category', 'CategoryController@add')->name('addcategory');
 
-Auth::routes();
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/logout', function(){
        Auth::logout();
        return redirect('/login');
@@ -59,8 +60,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/postcheckout', 'OrderController@checkout')->name('user.postcheckout');
     Route::get('/track', 'OrderController@track')->name('products.track');
     Route::get('/trackorder', 'OrderController@trackOrder')->name('products.trackorder');
+    Route::get('/seller/request', 'UserController@sellerRequest');
 });
-Route::middleware('seller')->group(function() {
+Route::middleware(['auth', 'seller', 'verified'])->group(function() {
     Route::get('/seller/dashboard', 'SellerController@index')->name('seller.dashboard');
     Route::get('/seller/products', 'SellerController@products')->name('seller.products');
     Route::get('/seller/products/create', 'SellerController@create')->name('seller.create_product');
@@ -75,4 +77,9 @@ Route::middleware('seller')->group(function() {
     Route::get('/markAsRead', function(){
        auth()->user()->unreadNotifications->markAsRead();
     });
+    Route::get('/seller/notifications', 'SellerController@notifications')->name('seller.notifications');
+    Route::get('/seller/notifications/clearall', 'SellerController@clearAllNotifications');
+    Route::get('/seller/requests', 'SellerController@showRequests')->name('seller.requests');
+    Route::post('/seller/grant_request/{id}', 'SellerController@grant')->name('seller.grant_request');
+    Route::delete('/seller/delete_request/{id}', 'SellerController@deleteRequest')->name('seller.delete_request');
 });

@@ -17,9 +17,10 @@ class CommentedOnProduct extends Notification
      *
      * @return void
      */
-    public function __construct($product)
+    public function __construct($product, $comment)
     {
         $this->product = $product;
+        $this->comment = $comment;
     }
 
     /**
@@ -42,7 +43,9 @@ class CommentedOnProduct extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            auth()->user()->name . ' commented on ' . $this->product->name,
+            'user' => auth()->user(),
+            'product' => $this->product,
+            'comment' => $this->comment,
         ];
     }
 }

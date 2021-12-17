@@ -19,7 +19,7 @@
                             <tbody>
                                 @foreach($carts as $cart)
                             <tr id='price'>
-                                <td><img style= "height: 100px; width: 100px; object-fit: cover;" src='/{{$cart->product->product_image1}}' alt=''><a style="padding-left: 30px;" class='ps-product__preview' href="/details/{{$cart->product->id}}">{{$cart->product->name}}</a></td>
+                                <td><img style= "height: 100px; width: 100px; object-fit: cover;" src='{{asset($cart->product->product_image1)}}' alt=''><a style="padding-left: 30px;" class='ps-product__preview' href="/details/{{$cart->product->id}}">{{$cart->product->name}}</a></td>
                                 <td>${{$cart->product->new_price}}</td>
                                 <td>
                                     <div class="form-group--number">

@@ -33,13 +33,13 @@
                                                 <tbody class="tbody">
                                                 @foreach($orders as $order)
                                                     <tr>
-                                                        <td>{{$order->orderno}}</td>
-                                                        <td>{{$order->product->name}}</td>
-                                                        <td>{{$order->user->name}}</td>
-                                                        <td>{{$order->subtotal}}</td>
-                                                        <td>{{$order->total}}</td>
-                                                        <td>{{$order->address}}, {{$order->city}}, {{$order->province}}, {{$order->country}}, {{$order->postal_code}}</td>
-                                                        <td>{{$order->phone}}</td>
+                                                        <td class="cell">{{$order->orderno}}</td>
+                                                        <td class="cell">{{$order->product->name}}</td>
+                                                        <td class="cell">{{$order->user->name}}</td>
+                                                        <td class="cell">{{$order->subtotal}}</td>
+                                                        <td class="cell">{{$order->total}}</td>
+                                                        <td class="cell">{{$order->address}}, {{$order->city}}, {{$order->province}}, {{$order->country}}, {{$order->postal_code}}</td>
+                                                        <td class="cell">{{$order->phone}}</td>
                                                     </tr>
                                             @endforeach
                                                 </tbody>

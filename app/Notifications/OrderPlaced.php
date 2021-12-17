@@ -41,7 +41,8 @@ class OrderPlaced extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            auth()->user()->name . " ordered " . $this->cart->name,
+            'user' => auth()->user(),
+            'cart' => $this->cart,
         ];
     }
 }

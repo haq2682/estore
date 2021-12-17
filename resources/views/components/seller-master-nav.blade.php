@@ -29,33 +29,39 @@
                             </div><!--//dropdown-menu-title-->
                             <div class="dropdown-menu-content">
                                 @if(count(auth()->user()->unreadNotifications) > 0)
-                                    <!-- @foreach(auth()->user()->unreadNotifications as $notification) -->
-                                    @for($i = 0; $i < count(auth()->user()->unreadNotifications); $i++)
+                                    @foreach(auth()->user()->unreadNotifications as $notification)
                                         <div class="item p-3">
                                             <div class="row gx-2 justify-content-between align-items-center">
+                                                <div class="col-auto">
+                                                    <img class="profile-image" src="{{asset($notification->data['user']['avatar'])}}" alt="">
+                                                </div><!--//col-->
                                                 <div class="col">
                                                     <div class="info">
-                                                            <div class="desc">{{auth()->user()->unreadNotifications[$i]->data[0]}}.</div>
-                                                        <div class="meta">{{auth()->user()->unreadNotifications[$i]->created_at->diffForHumans()}}</div>
+                                                        @if($notification->type === 'App\Notifications\CommentedOnProduct')
+                                                            <div class="desc">{{$notification->data['user']['name']}} commented on {{$notification->data['product']['name']}}.</div>
+                                                        @elseif($notification->type === 'App\Notifications\OrderPlaced')
+                                                            <div class="desc">{{$notification->data['user']['name']}} ordered {{$notification->data['cart']['name']}}.</div>
+                                                        @endif
+                                                        <div class="meta">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a class="link-mask" href="notifications.html"></a>
                                         </div><!--//item-->
-                                    @endfor
-                                    <!-- @endforeach -->
+                                    @endforeach
+                                @else
+                                    <h6 style="text-align: center; padding: 20px;">You don't have any notifications.</h6>
                                 @endif
                             </div><!--//dropdown-menu-content-->
 
                             <div class="dropdown-menu-footer p-2 text-center">
-                                <a href="notifications.html">View all</a>
+                                <a href="{{route('seller.notifications')}}">View all</a>
                             </div>
 
                         </div><!--//dropdown-menu-->
                     </div><!--//app-utility-item-->
 
                     <div class="app-utility-item app-user-dropdown dropdown">
-                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><img src="{{auth()->user()->avatar}}" alt="user profile"><p style="display: inline; padding-left: 10px;">{{auth()->user()->name}}</p></a>
+                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><img style="border-radius: 50px;" src="{{asset(auth()->user()->avatar)}}" alt="user profile"><p style="display: inline; padding-left: 10px;">{{auth()->user()->name}}</p></a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                             <li><a class="dropdown-item" href="{{route('user.profile')}}">Settings</a></li>
                             <li><a class="dropdown-item" href="/logout">Log Out</a></li>

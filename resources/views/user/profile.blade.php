@@ -76,6 +76,11 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                     </form>
+                    @if(!auth()->user()->userHasRole('seller'))
+                    <div style="margin: 50px;">
+                        <h4>If you want to start your own business, send a seller request.</h4><button class="btn btn-primary"><a style="text-decoration: none; color: white;" href="/seller/request">Send Request</a></button>
+                    </div>
+                    @endif
                 </div>
                     <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                         <h3 class="mb-4">Password Settings</h3>

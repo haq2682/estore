@@ -14,24 +14,24 @@
                         <div class="ps-product__thumbnail">
                             <div class="ps-product__preview">
                                 <div class="ps-product__variants">
-                                    <div class="item"><img src="/{{$details->product_image1}}" alt=""></div>
-                                    <div class="item"><img src="/{{$details->product_image2}}" alt=""></div>
-                                    <div class="item"><img src="/{{$details->product_image3}}" alt=""></div>
-                                    <div class="item"><img src="/{{$details->product_image4}}" alt=""></div>
-                                    <div class="item"><img src="/{{$details->product_image5}}" alt=""></div>
-                                </div><img src="{{$details->product_image1}}" alt="">
+                                    <div class="item"><img src="{{asset($details->product_image1)}}" alt=""></div>
+                                    <div class="item"><img src="{{asset($details->product_image2)}}" alt=""></div>
+                                    <div class="item"><img src="{{asset($details->product_image3)}}" alt=""></div>
+                                    <div class="item"><img src="{{asset($details->product_image4)}}" alt=""></div>
+                                    <div class="item"><img src="{{asset($details->product_image5)}}" alt=""></div>
+                                </div><img src="{{asset($details->product_image1)}}" alt="">
                             </div>
                             <div class="ps-product__image">
-                                <div class="item"><img class="zoom" src="/{{$details->product_image1}}" alt="" data-zoom-image="/{{$details->product_image1}}"></div>
-                                <div class="item"><img class="zoom" src="/{{$details->product_image2}}" alt="" data-zoom-image="/{{$details->product_image2}}"></div>
-                                <div class="item"><img class="zoom" src="/{{$details->product_image3}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
-                                <div class="item"><img class="zoom" src="/{{$details->product_image4}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
-                                <div class="item"><img class="zoom" src="/{{$details->product_image5}}" alt="" data-zoom-image="/{{$details->product_image3}}"></div>
+                                <div class="item"><img class="zoom" src="{{asset($details->product_image1)}}" alt="" data-zoom-image="{{asset($details->product_image1)}}"></div>
+                                <div class="item"><img class="zoom" src="{{asset($details->product_image2)}}" alt="" data-zoom-image="{{asset($details->product_image2)}}"></div>
+                                <div class="item"><img class="zoom" src="{{asset($details->product_image3)}}" alt="" data-zoom-image="{{asset($details->product_image3)}}"></div>
+                                <div class="item"><img class="zoom" src="{{asset($details->product_image4)}}" alt="" data-zoom-image="{{asset($details->product_image3)}}"></div>
+                                <div class="item"><img class="zoom" src="{{asset($details->product_image5)}}" alt="" data-zoom-image="{{asset($details->product_image3)}}"></div>
                             </div>
                         </div>
                         <div class="ps-product__thumbnail--mobile">
-                            <div class="ps-product__main-img"><img src="/{{$details->product_image1}}" alt=""></div>
-                            <div class="ps-product__preview owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="20" data-owl-nav="true" data-owl-dots="false" data-owl-item="3" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="3" data-owl-duration="1000" data-owl-mousedrag="on"><img src="/{{$details->product_image2}}" alt=""><img src="/{{$details->product_imag3}}}" alt=""><img src="/{{$details->product_imag4}}" alt=""><img src="/{{$details->product_imag5}}" alt=""></div>
+                            <div class="ps-product__main-img"><img src="{{asset($details->product_image1)}}" alt=""></div>
+                            <div class="ps-product__preview owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="20" data-owl-nav="true" data-owl-dots="false" data-owl-item="3" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="3" data-owl-duration="1000" data-owl-mousedrag="on"><img src="{{asset($details->product_image2)}}" alt=""><img src="{{asset($details->product_imag3)}}}" alt=""><img src="{{asset($details->product_imag4)}}" alt=""><img src="{{asset($details->product_imag5)}}" alt=""></div>
                         </div>
                         <div class="ps-product__info">
                             <h1>{{$details->name}}</h1>
@@ -39,7 +39,7 @@
                             <h3 style="color: limegreen;" class="ps-product__price">${{$details->new_price}} @if($details->old_price)<del style="color: red;">${{$details->old_price}}</del>@endif</h3>
                             <div class="ps-product__block ps-product__quickview">
                                 <h4>SELLER</h4>
-                                <img class="img-circle" style="height: 45px; width: 45px; object-fit: cover;" src="{{$details->user->avatar}}"><p style="display: inline; padding: 10px;">{{$details->user->name}}</p>
+                                <img class="img-circle" style="height: 45px; width: 45px; object-fit: cover;" src="{{asset($details->user->avatar)}}"><p style="display: inline; padding: 10px;">{{$details->user->name}}</p>
                             </div>
                             @if(Auth::check())
                                 @if(!$cart)
@@ -95,43 +95,45 @@
                             <div class="tab-pane" role="tabpanel" id="tab_02">
                                 @foreach($comments as $comment)
                                 <div class="ps-review">
-                                    <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
                                     <div class="ps-review__content">
                                         <header>
-                                            <img src="{{$comment->user->avatar}}" height="30px" width="30px" class="rounded-circle z-depth-2 float-left float-right">   <p><a href=""> {{$comment->user->name}}</a> Posted: {{$comment->created_at->diffForHumans()}}</p>
+                                            <img src="{{asset($comment->user->avatar)}}" style="border-radius: 30px;" height="30px" width="30px" class="rounded-circle z-depth-2 float-left float-right">   <p><a href=""> {{$comment->user->name}}</a> Posted: {{$comment->created_at->diffForHumans()}}</p>
                                         </header>
                                         <p>{{$comment->comment}}</p>
-                                        @if($comment->user->id == auth()->user()->id)
-                                            <form method="post" action="{{route('comments.delete', $comment->id)}}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <div style="padding-top: 30px; float: right;"><button type="submit" class="ps-btn ps-btn--sm">Delete</button></div>
-                                            </form>
+                                        @if(Auth::check())
+                                            @if($comment->user->id == auth()->user()->id)
+                                                <form method="post" action="{{route('comments.delete', $comment->id)}}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <div style="padding-top: 30px; float: right;"><button type="submit" class="ps-btn ps-btn--sm">Delete</button></div>
+                                                </form>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
                                 @endforeach
-                                <form class="ps-product__review" action="{{route('comments.store')}}" method="post">
                                     <h4>ADD YOUR REVIEW</h4>
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
                                             @if(Auth::check())
-                                                <div class="form-group">
-                                                    <label>Your Review:</label>
-                                                    @csrf
-                                                    <textarea class="form-control" name="comment" rows="6"></textarea>
-                                                    <input type="hidden" name="product_id" value="{{$details->id}}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="ps-btn ps-btn--sm">Submit<i class="ps-icon-next"></i></button>
-                                                </div>
+                                                <form class="ps-product__review" action="{{route('comments.store')}}" method="post">
+                                                    <div class="form-group">
+                                                        <label>Your Review:</label>
+                                                        @csrf
+                                                        <textarea class="form-control" name="comment" rows="6"></textarea>
+                                                        <input type="hidden" name="product_id" value="{{$details->id}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="ps-btn ps-btn--sm">Submit<i class="ps-icon-next"></i></button>
+                                                    </div>
+                                                </form>
                                             @else
                                                 <h3>You must be logged in to add a review</h3>
-                                                <div style="padding-top: 30px;"><button class="ps-btn ps-btn--sm"><a href="/login">Login</a></button></div>
+                                                <div style="padding-top: 30px;"><a class="ps-btn ps-btn--sm" href="/login">Login</a></div>
                                             @endif
                                         </div>
                                     </div>
-                                </form>
+
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab_03">
                                     <div class="form-group">
@@ -163,11 +165,11 @@
                                 <div class="ps-shoe">
                                     <div class="ps-shoe__thumbnail">
                                             @if($recommended->old_price)<div class="ps-badge"><span>Sale</span></div>@endif
-                                            <img src="/{{$recommended->product_image1}}" alt=""><a class="ps-shoe__overlay" href="{{route('products.details', $recommended->id)}}"></a>
+                                            <img src="{{asset($recommended->product_image1)}}" alt=""><a class="ps-shoe__overlay" href="{{route('products.details', $recommended->id)}}"></a>
                                     </div>
                                     <div class="ps-shoe__content">
                                         <div class="ps-shoe__variants">
-                                            <div class="ps-shoe__variant normal"><img src="/{{$recommended->product_image2}}" alt=""><img src="/{{$recommended->product_image3}}" alt=""><img src="/{{$recommended->product_image4}}"><img src="/{{$recommended->product_image5}}" alt=""> </div>
+                                            <div class="ps-shoe__variant normal"><img src="{{asset($recommended->product_image2)}}" alt=""><img src="{{asset($recommended->product_image3)}}" alt=""><img src="{{asset($recommended->product_image4)}}"><img src="{{asset($recommended->product_image5)}}" alt=""> </div>
                                             <div>Seller: {{$recommended->user->name}}</div>
                                         </div>
                                         <div class="ps-shoe__detail"><a class="ps-shoe__name" href="{{route('products.details', $recommended->id)}}">{{$recommended->name}}</a>

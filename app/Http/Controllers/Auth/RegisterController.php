@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/email/verify';
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'avatar' => 'https://rpgplanner.com/wp-content/uploads/2020/06/no-photo-available.png',
+            'avatar' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }

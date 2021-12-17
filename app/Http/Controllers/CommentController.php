@@ -13,12 +13,13 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $product = Product::find($request->product_id);
+        $comment = $request->comment;
         Comment::create([
-            'comment' => $request->comment,
+            'comment' => $comment,
             'user_id' => Auth::id(),
             'product_id' => $product->id
         ]);
-        $product->user->notify(new CommentedOnProduct($product));
+        $product->user->notify(new CommentedOnProduct($product, $comment));
         return back();
     }
     public function delete($id) {

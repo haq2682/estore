@@ -55,13 +55,13 @@
                                                 <td class="cell">{{$product->category->name}}</td>
                                                 <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('products.details', $product->id)}}">View</a></td>
                                                 <td class="cell">
-                                                    <form action="{{route('seller.delete', $product->id)}}" method="post">
+                                                    <form style="display: inline;" action="{{route('seller.delete', $product->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" style="background: none; border: none;"><a class="btn-sm app-btn-secondary">Delete</a></button>
                                                     </form>
                                                 </td>
-                                                <td>
+                                                <td class="cell">
                                                     <button style="background: none; border: none;">
                                                         <a class="btn-sm app-btn-secondary" href="{{route('seller.edit_product', $product->id)}}">
                                                             Edit

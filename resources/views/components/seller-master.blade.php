@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
@@ -67,7 +68,20 @@
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script>
     $(document).ready(function(){
-        $('.app-utilities').click(function(){$.ajax({url:'/markAsRead'})});
+        $('.app-utilities').click(function(){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                url:'/markAsRead',
+                success: function() {
+                    $('.icon-badge').html('0');
+                }
+            })
+        });
     });
 </script>
 @yield('scripts')

@@ -9,6 +9,7 @@ use App\Notifications\OrderPlaced;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -75,6 +76,12 @@ class OrderController extends Controller
             $cart->product->user->notify(new OrderPlaced($cart->product));
         }
         Cart::where('user_id', '=', auth()->user()->id)->truncate();
+        $email = auth()->user()->email;
+        $data = array('orderno'=>$orderno);
+        Mail::send('emails.orderplace', $data, function($message) use ($email){
+            $message->to($email)->subject('Order Placed');
+            $message->from('order_management@estore.com');
+        });
         return view('user.ordersuccess', compact('orderno'));
     }
     public function track() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\SellerRequest;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -94,6 +95,14 @@ class UserController extends Controller
             'country' => 'required',
         ]);
         auth()->user()->address()->create($inputs);
+        return back();
+    }
+    public function sellerRequest() {
+        $id = auth()->user()->id;
+        SellerRequest::create([
+            'user_id' => $id,
+        ]);
+        session()->flash('success', 'Seller Request submitted successfully!');
         return back();
     }
 }
