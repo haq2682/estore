@@ -31,6 +31,7 @@ Route::get('/faq', 'Controller@faq')->name('faq');
 Route::get('/policies', 'Controller@policies')->name('policies');
 Route::get('/contact', 'Controller@contact')->name('contact');
 Route::post('/category', 'CategoryController@add')->name('addcategory');
+Route::post('/contact/message', 'Controller@sendMessage');
 
 
 
