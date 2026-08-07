@@ -26,10 +26,11 @@
 5. [Environment Setup](#environment-setup)
 6. [Environment Variables](#environment-variables)
 7. [Project / File Structure](#project--file-structure)
-8. [Data Model Overview](#data-model-overview)
-9. [Useful Artisan & NPM Commands](#useful-artisan--npm-commands)
-10. [Notes for Contributors](#notes-for-contributors)
-11. [License](#license)
+8. [Demo Video](#demo-video)
+9. [Data Model Overview](#data-model-overview)
+10. [Useful Artisan & NPM Commands](#useful-artisan--npm-commands)
+11. [Notes for Contributors](#notes-for-contributors)
+12. [License](#license)
 
 ---
 
@@ -244,6 +245,9 @@ estore/
 ├── .styleci.yml                   # StyleCI (Laravel preset) configuration
 └── artisan                        # Artisan CLI entry point
 ```
+## Demo Video
+
+[Here is the project demo video](https://www.facebook.com/share/v/1F2cEMtnns/)
 
 ## Data Model Overview
 
